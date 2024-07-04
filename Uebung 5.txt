@@ -1,0 +1,7 @@
+Aufgabe 2:
+Es ist wichtig, dass Nachrichten immer bestätigt werden, so dass sie im Fall das sie ein Packet verloren gegangen ist, es erneut gesendet werden kann.
+Um zu verhindern das ein Paket falsch interpretiert wird, hat jedes Paket einen unterschiedlichen Anfang, welcher angibt um welche Paketart es sich handelt (z.B.: registerPlayer oder gameover)
+
+Aufgabe 4:
+Ein Problem in der aktuellen Version des vereinbarten Standarts ist, dass die Spieler nicht mit dem Kartenzähler interagieren können.
+Daher kann z.B. nicht die optimale Höhe für einen Bet ermittelt werden, und muss manuell eingegeben werden.
