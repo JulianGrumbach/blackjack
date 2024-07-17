@@ -1,0 +1,71 @@
+Aufgabe 1:
+Sliding-Window ist ein Protokoll, welches für das Senden und Empfangen von TCP-Paketen verwendet wird, um die Kapazität zu optimieren.
+Dabei bestimmt die Größe des Sliding-Window, wie viele zusätzliche Nachrichten versendet werden können, welche noch nicht vom Empfänger bestätigt wurden.
+
+3. Verschiedene Implementierungen vom Sliding-Window
+TCP Tahoe:
+Start mit Fenstergröße 1, dann lineares Wachsen und zurücksetzen auf 1
+TCP Reno:
+wie TCP Tahoe, aber halbiert Fenstergröße statt sie auf 1 zu setzen beim Erhalt 3 Duplicate ACKs
+TCP Vegas:
+Ermittlung der Fenstergröße über die Round Trip Time
+
+7. Application Layer DNS, DHCP
+6. Presentation Layer
+5. Session Layer
+4. Transport Layer TCP, UDP
+3. Network Layer: ICMP, IP, Ethernet
+2. Link Layer: Ethernet
+1. Physical Layer: Ethernet
+
+Aufgabe 2:
+Durch Ausschalten des Routers oder durch Trennen des Geräts vom Internet und erneut verbinden, wird über DHCP vom Gerät eine Request für die Zuweisung einer gewünschten lokalen IP-Adresse (192.168.178.86), sowie der Hostname des Geräts (julian-pc) gesendet und diese vom Router bestätigt. DHCP Offer und DHCP Discover Pakete konnte ich nicht über Wireshark aufzeichnen.
+
+Aufgabe 3:
+a) Wie viele Hosts befinden sich in ihrem lokalen Klasse-C-Netz?
+nmap -sn 192.168.178.0/24
+Klasse C entspricht CIDR /24
+-sn macht einen No Port Scan und listet danach die gefundenen Hosts, inklusive des Routers
+
+b) Welches Betriebssystem wird von scanme.nmap.org verwendet?
+sudo nmap -O scanme.nmap.org
+-O führt einen OS-Scan durch
+Antwort:
+Nmap scan report for scanme.nmap.org (45.33.32.156)
+Host is up (0.17s latency).
+Other addresses for scanme.nmap.org (not scanned): 2600:3c01::f03c:91ff:fe18:bb2f
+Not shown: 993 closed tcp ports (reset)
+PORT      STATE    SERVICE
+22/tcp    open     ssh
+80/tcp    open     http
+135/tcp   filtered msrpc
+139/tcp   filtered netbios-ssn
+445/tcp   filtered microsoft-ds
+9929/tcp  open     nping-echo
+31337/tcp open     Elite
+Aggressive OS guesses: Linux 4.19 - 5.15 (96%), Linux 4.15 (91%), IPFire 2.27 (Linux 5.15 - 6.1) (90%), Linux 5.4 (90%), Linux 5.0 - 5.14 (89%), MikroTik RouterOS 7.2 - 7.5 (Linux 5.6.3) (89%), Linux 3.11 - 4.9 (89%), Linux 3.2 - 3.8 (89%), Synology DiskStation Manager 5.1 (88%), Android TV OS 11 (Linux 4.19) (87%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 26 hops
+
+c) An welchem Datum wurde die Webseite nmap.org registiert?
+whois nmap.org
+Das Creation Date gibt an, wann die Webseite registiert wurde: 1999-01-18T05:00:00Z.
+
+d) Wie kann man möglichst effektiv eine größere Menge an Adressen nach offenen TCP-Ports scannen?
+Mit der Option -T4 oder -T5 können engere Timings ausgewählt werden, sodass die Scangeschwindigkeit erhöht wird.
+Mit der Option -p kann eine Reihe an Ports angegeben werden, sodass der Portscanbereich verkleinert werden kann und dadurch der Vorgang schneller ist.
+
+e) Wie funktioniert der SYN-Scan und für was kann man ihn verwenden?
+SYN-Scan ist die Standard-Scan Methode für nmap, und es werden SYN-Pakete an die Ports gesendet. Falls der Port offen ist antwortet der Server mit SYN/ACK und falls der Port geschlossen ist mit RST. So kann nmap direkt herausfinden, welche Ports offen und welche geschlossen sind für TCP, falls die Ports nicht durch eine  Firewall geschützt sind.
+
+f) Welches sind die offenen Ports, die bei Ihren bisherigen Nmap-Scans am häufigsten auftreten, und wofür werden sie verwendet?
+
+Häufige auftretende Ports sind 22/tcp für SSH und 80/tcp für http.
+
+Aufgabe 4:
+dynamische und distanzvektorbasierte Routingverfahren
+Unterschied zu Link-State?
+
+Ein Problem von Link-State, welches distanzvektorbasierte Routingverfahren nict haben, ist, dass eine gesamte Sicht des Netz gespeichert werden muss. Link-State kann jedoch gut in statischen oder kleineren Netzen Anwendung finden.
+
+Über den Bellman-Ford-Algorithmus kann für distanzvektorbasierte Verfahren die beste Route ermittelt werden.
